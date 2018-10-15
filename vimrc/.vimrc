@@ -28,7 +28,6 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Setting Section
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nu
 set cursorline 
 set mouse=a
@@ -68,6 +67,15 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 let g:asyncrun_open = 8
 
 set backspace=indent,eol,start
+
+" autocmd
+func! DeleteTrailingWS()
+exe "normal mz"
+%s/\s\+$//ge
+exe "normal `z"
+endfunc
+
+autocmd BufWrite * :call DeleteTrailingWS()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Beautiful Section
